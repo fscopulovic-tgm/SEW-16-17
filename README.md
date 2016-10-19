@@ -1,2 +1,4 @@
 # SEW-16-17
-School stuff repository
+SEW repository
+class 4CHIT
+year 2016-2017
