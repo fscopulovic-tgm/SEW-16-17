@@ -65,14 +65,15 @@ class MeinKontroller(QtGui.QWidget):
         """
         Gibt an, was passiert, wenn ein Zahl Button geklickt wurde
 
+        :param btn:
         :return: None
         """
         geklickter_button = int(btn.text())
-        if geklickter_button == self.__vorhanden:
-            btn.setEnable(False)
+        if geklickter_button == self.__vorhanden[0]:
+            btn.setEnabled(False)
             self.__model.minus_offene_buttons()
             self.__model.plus_korrekt()
-            self.__vorhanden.pop(geklickter_button)
+            self.__vorhanden.pop(0)
         else:
             self.__model.plus_falsch()
         self.__labels_updaten()
@@ -91,7 +92,7 @@ class MeinKontroller(QtGui.QWidget):
 
     def __set_zahl_button(self):
         """
-        Setzt den Text
+        Setzt den Text für die Buttons
 
         :return: None
         """
@@ -99,10 +100,11 @@ class MeinKontroller(QtGui.QWidget):
         nichtvorhanden = list(range(1, len(self.__buttons) + 1))
 
         for b in self.__buttons:
+            b.setEnabled(True)
             zufall_index = zufall.randint(0, len(nichtvorhanden) - 1)
-            b.setText(str(zufall_index))
-            self.__vorhanden.append(zufall_index)
-            nichtvorhanden.pop()
+            zufalls_nummer = nichtvorhanden.pop(zufall_index)
+            b.setText(str(zufalls_nummer))
+            self.__vorhanden.append(zufalls_nummer)
 
         self.__vorhanden.sort()
 
