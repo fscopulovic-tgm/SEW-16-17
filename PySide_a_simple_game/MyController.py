@@ -105,3 +105,9 @@ class MeinKontroller(QtGui.QWidget):
             nichtvorhanden.pop(zufall_index)
 
         self.__vorhanden.sort()
+
+if __name__ == "__main__":
+    app = QtCore.QApplication(sys.argv)
+    c = MeinKontroller()
+    c.show()
+    sys.exit(app.exec_())
