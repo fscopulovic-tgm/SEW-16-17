@@ -1,8 +1,12 @@
-MyModel module
---------------
+MyModel
+-------
 .. automodule:: MyModel
+    :members:
+    :special-members:
+    :undoc-members:
+
 .. autoclass:: MeinModel
     :members:
     :undoc-members:
-    :special-members: __init__
+    :special-members:
     :show-inheritance:
