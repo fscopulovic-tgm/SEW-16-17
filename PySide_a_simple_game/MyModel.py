@@ -52,11 +52,11 @@ class MeinModel:
         """
         return self.__spiele
 
-    def get_total(self):
+    def get_gesamt(self):
         """
         Liefert den Wert von korrekt + falsch
 
-        :return int self.__total:
+        :return int self.__korrekt + self.__falsch:
         """
         return self.__korrekt + self.__falsch
 
