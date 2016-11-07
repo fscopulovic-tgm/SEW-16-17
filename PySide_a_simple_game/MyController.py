@@ -22,8 +22,8 @@ class MeinKontroller(QtGui.QWidget):
         """
         super(MeinKontroller, self).__init__()
 
-        self.myForm = MyView.Ui_Spiel()
-        self.myForm.setupUi(self)
+        self.__myForm = MyView.Ui_Spiel()
+        self.__myForm.setupUi(self)
         self.__model = MyModel.MeinModel()
 
         #Vorhanden ist eine Liste mit den schon vorhanden Zahlen
@@ -31,22 +31,20 @@ class MeinKontroller(QtGui.QWidget):
 
         #Dieser Abschnitt ist dafuer da, die Zahlbuttons aus der View zu bekommen
         self.__buttons = []
-        for i in range(15):
+        for i in range(1, 16):
             #Mit Format werden die Namen der Buttons initialisiert
             gewaehlter_button = "zahl_{0}".format(i)
             #Mit getattr werden die Buttons zurueckgeliefert
-            zahl_button = getattr(self.__view, gewaehlter_button)
+            zahl_button = getattr(self.__myForm, gewaehlter_button)
             #Man addet die Buttons in eine Liste
             self.__buttons.append(zahl_button)
 
         #Dieser Abschnitt kuemmert sich darum, das die Buttons mit ihren Methoden verbinden werden
-        self.__view.neustart.clicked.connect(self.__spiel_neustarten)
+        self.__myForm.neustarten.clicked.connect(self.__spiel_neustarten)
         #Ich wusste nicht wie man die Buttons mit einer For-Schleife mit einem Signal verbindet,
-        # also habe ich den Schüler Pierre Rieger gefragt und er hat mir dann durch seine Hilfe die for-Schleife erklärt
+        #also habe ich den Schüler Pierre Rieger gefragt und er hat mir dann durch seine Hilfe die for-Schleife erklärt
         for b in self.__buttons:
             b.clicked.connect(lambda b=b: self.__zahl_button_geklickt(b))
-
-        self.start()
 
     def __spiel_neustarten(self):
         """
@@ -82,11 +80,11 @@ class MeinKontroller(QtGui.QWidget):
 
         :return: None
         """
-        self.__view.offen_zaehler.setText(str(self.__model.get_offene_buttons))
-        self.__view.korrekt_zaehler.setText(str(self.__model.get_korrekt))
-        self.__view.falsch_zaehler.setText(str(self.__model.get_falsch))
-        self.__view.gesamt_zaehler.setText(str(self.__model.get_gesamt))
-        self.__view.spiel_zaehler.setText(str(self.__model.get_spiele))
+        self.__myForm.offen_zaehler.setText(str(self.__model.get_offene_buttons))
+        self.__myForm.korrekt_zaehler.setText(str(self.__model.get_korrekt))
+        self.__myForm.falsch_zaehler.setText(str(self.__model.get_falsch))
+        self.__myForm.gesamt_zaehler.setText(str(self.__model.get_gesamt))
+        self.__myForm.spiel_zaehler.setText(str(self.__model.get_spiele))
 
     def __set_zahl_button(self):
         """
@@ -96,7 +94,7 @@ class MeinKontroller(QtGui.QWidget):
         """
         zufall = Random()
         nichtvorhanden = []
-        for i in range(0, 16):
+        for i in range(0, 15):
             nichtvorhanden.append(i)
 
         for b in self.__buttons:
@@ -107,7 +105,7 @@ class MeinKontroller(QtGui.QWidget):
         self.__vorhanden.sort()
 
 if __name__ == "__main__":
-    app = QtCore.QApplication(sys.argv)
+    app = QtGui.QApplication(sys.argv)
     c = MeinKontroller()
     c.show()
     sys.exit(app.exec_())
