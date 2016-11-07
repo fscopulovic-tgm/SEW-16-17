@@ -46,6 +46,9 @@ class MeinKontroller(QtGui.QWidget):
         for b in self.__buttons:
             b.clicked.connect(lambda b=b: self.__zahl_button_geklickt(b))
 
+        self.__labels_updaten()
+        self.__set_zahl_button()
+
     def __spiel_neustarten(self):
         """
         Startet das Spiel neu, indem es die Labels zuruecksetzt mit einer Methode aus dem Model
@@ -80,11 +83,11 @@ class MeinKontroller(QtGui.QWidget):
 
         :return: None
         """
-        self.__myForm.offen_zaehler.setText(str(self.__model.get_offene_buttons))
-        self.__myForm.korrekt_zaehler.setText(str(self.__model.get_korrekt))
-        self.__myForm.falsch_zaehler.setText(str(self.__model.get_falsch))
-        self.__myForm.gesamt_zaehler.setText(str(self.__model.get_gesamt))
-        self.__myForm.spiel_zaehler.setText(str(self.__model.get_spiele))
+        self.__myForm.offen_zaehler.setText(str(self.__model.get_offene_buttons()))
+        self.__myForm.korrekt_zaehler.setText(str(self.__model.get_korrekt()))
+        self.__myForm.falsch_zaehler.setText(str(self.__model.get_falsch()))
+        self.__myForm.gesamt_zaehler.setText(str(self.__model.get_gesamt()))
+        self.__myForm.spiel_zaehler.setText(str(self.__model.get_spiele()))
 
     def __set_zahl_button(self):
         """
@@ -93,14 +96,13 @@ class MeinKontroller(QtGui.QWidget):
         :return: None
         """
         zufall = Random()
-        nichtvorhanden = []
-        for i in range(0, 15):
-            nichtvorhanden.append(i)
+        nichtvorhanden = list(range(1, len(self.__buttons) + 1))
 
         for b in self.__buttons:
-            zufall_index = zufall.randint(0, len(nichtvorhanden))
+            zufall_index = zufall.randint(0, len(nichtvorhanden) - 1)
+            b.setText(str(zufall_index))
             self.__vorhanden.append(zufall_index)
-            nichtvorhanden.pop(zufall_index)
+            nichtvorhanden.pop()
 
         self.__vorhanden.sort()
 
