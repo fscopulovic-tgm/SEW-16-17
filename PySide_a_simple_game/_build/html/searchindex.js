@@ -1,1 +1,0 @@
-Search.setIndex({envversion:50,filenames:["index"],objects:{},objnames:{},objtypes:{},terms:{content:0,modulindex:0,stichwortverzeichnis:0,such:0},titles:["Welcome to Game_Scopulovic&#8217;s documentation!"],titleterms:{and:0,documentation:0,game_scopulovic:0,indic:0,tabl:0,welcom:0}})

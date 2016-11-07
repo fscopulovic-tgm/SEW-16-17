@@ -99,6 +99,7 @@ class MeinKontroller(QtGui.QWidget):
         zufall = Random()
         nichtvorhanden = list(range(1, len(self.__buttons) + 1))
 
+        #Einige dieser Stellen wurden ebenfalls mit der Hilfestellung von Pierre Rieger fertiggestellt
         for b in self.__buttons:
             b.setEnabled(True)
             zufall_index = zufall.randint(0, len(nichtvorhanden) - 1)

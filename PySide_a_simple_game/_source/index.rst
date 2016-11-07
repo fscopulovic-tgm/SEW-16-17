@@ -6,12 +6,24 @@
 Welcome to Game_Scopulovic's documentation!
 ===========================================
 
+Bibliographic fields:
+---------------------
+   :Author: Filip Scopulovic
+   :organization: TGM Wien
+   :date: 2016-11-07
+   :status: "Finished"
+   :revision: 1.0
+   :version: 1.0
+
 Contents:
+---------
 
 .. toctree::
    :maxdepth: 2
 
-
+   MyController
+   MyModel
+   MyView
 
 Indices and tables
 ==================
