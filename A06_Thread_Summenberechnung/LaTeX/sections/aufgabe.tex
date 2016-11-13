@@ -1,0 +1,102 @@
+%!TEX root=../document.tex
+
+\section{Code}
+\subsection{Vorgehensweise}
+Die Vorgehensweise war schlicht. Ich habe mir kurz überlegt wie ich es anstellen könnte und habe drauf los programmiert. Die Initialisierung von der Thread-Klasse habe ich aus dem PDF von dem Herr Professor Rafeiner-Magor entnommen.
+\subsection{Aufwand}
+Der Aufwand war nicht recht groß. Selbst \verb|Sphinx| hat keinen großen Aufwand erfordert.
+\subsection{Resultate}
+Die Summierung funktioniert zwar, jedoch muss ich wegen der Partitionsmethode die eingegebene Zahl manuell einfügen. Hier einige Beispiele:
+\lstinputlisting[language=bash,caption=Resultat mit der Eingabe 4]{code/res1.txt}
+\lstinputlisting[language=bash,caption=Resultat mit der Eingabe 20]{code/res2.txt}
+\lstinputlisting[language=bash,caption=Resultat mit der Eingabe 100]{code/res3.txt}
+\subsection{Schwierigkeiten}
+Ich hatte ein Problem mit der Methode, die meine Inputliste in 3 circa gleich große Teile teilt. Deshalb habe ich gegoogelt und einen gute Idee von der Seite stackoverflow.com\footnote{\url{http://stackoverflow.com/questions/2659900/python-slicing-a-list-into-n-nearly-equal-length-partitions}} geholt. Ich habe diese Methode an das Projekt angepasst und implementiert. Das ist die angepasste Methode:
+\lstinputlisting[language=Python,caption=Partitionmethode]{code/partition.py}\clearpage
+\subsection{Gesamter Code}
+\lstinputlisting[language=Python,caption=Gesamter Code]{code/gescode.py}\clearpage
+\section{Beobachtung}
+\subsection{Laufzeitmessung}
+Zuerst messe ich die Laufzeit mit kleineren Zahlen. Später mit mittelgroßen Zahlen und zum Schluss mit ganz großen Zahlen. Die Einheit der Zeit ist in Sekunden.
+\begin{table}[!h]
+	\center
+	\begin{tabular}{ | c | c | c | c |}
+		\toprule
+		Thread 1 & Thread 2 & Thread 3 & Eingabe\\
+		\midrule
+		0.0004992485046386719 & 0.0004982948303222656 & 0.000484466552734375 & 9 \\
+		0.0005011558532714844 &
+		0.000499725341796875 &
+		0.0004999637603759766 &
+		18 \\
+		0.0004990100860595703 &
+		0.0 &
+		0.0004999637603759766 &
+		27 \\
+		0.0005004405975341797 &
+		0.0005054473876953125 &
+		0.0004947185516357422 &
+		100 \\
+		0.00099945068359375 &
+		0.0005004405975341797 &
+		0.0005023479461669922 &
+		300 \\
+		0.0010013580322265625 &
+		0.0010018348693847656 &
+		0.0004999637603759766 &
+		500 \\
+		3.316378355026245 &
+		3.339895486831665 &
+		3.3479015827178955 &
+		1000000 \\
+		10.093743085861206 &
+		10.091236114501953 &
+		10.10425353050232 &
+		3000000 \\
+		15.984353065490723 &
+		16.162463665008545 &
+		16.189979553222656 &
+		5000000 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Laufzeit mit drei Threads}
+\end{table}
+\begin{table}[!h]
+	\center
+	\begin{tabular}{ | c | c | c | c |}
+		\toprule
+		Thread 1 & Thread 2 & Eingabe\\
+		\midrule
+		0.0005009174346923828 & 
+		0.0005002021789550781 & 
+		9 \\
+		0.001001119613647461 &
+		0.0004994869232177734 &
+		18 \\
+		0.001001119613647461 &
+		0.0004999637603759766 &
+		27 \\
+		0.0005009174346923828 &
+		0.0005011558532714844 &
+		100 \\
+		0.0004999637603759766 &
+		0.0005004405975341797 &
+		300 \\
+		0.0005006790161132812 &
+		0.0004978179931640625 &
+		500 \\
+		2.1929757595062256 &
+		2.2344863414764404 &
+		1000000 \\
+		6.305695295333862 &
+		6.39276123046875 &
+		3000000 \\
+		10.990462303161621 &
+		11.038997888565063 &
+		5000000 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Laufzeit mit zwei Threads}
+\end{table}
+\newline
+Die Laufzeit mit zwei Threads ist bei größeren Zahlen besser, da man weniger Threads verwendet und das das Programm behindert.

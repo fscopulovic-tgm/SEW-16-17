@@ -1,0 +1,12 @@
+D:\Programme\Python\python.exe C:/Users/Filip/Desktop/Daten/Schule/4CHIT/SEW_4CHIT/SEW-16-17/A06_Thread_Summenberechnung/summenberechnung.py
+Write a number that you want to sum!
+>>4
+[[0], [1, 2], [3, 4]]
+Current number: 0
+Current number: 1
+Current number: 3
+Current number: 6
+Current number: 10
+Sum of the numbers: 10
+
+Process finished with exit code 0
