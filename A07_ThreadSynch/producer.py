@@ -3,7 +3,7 @@
 @date: 16-11-2016
 @use: Producer searches for prime numbers and gives them to the consumer
 """
-import threading, queue
+import threading, queue, math
 
 class Producer(threading.Thread):
     """
@@ -35,20 +35,21 @@ class Producer(threading.Thread):
         while True:
             if self.is_prime_number(number):
                 self.queue.put(number)
-                number += 1
                 self.queue.join()
-            else:
-                number += 1
+            number += 1
 
 
     def is_prime_number(self, number):
         """
-        Looks if the given parameter number is a prime number and returns a bool.
+        Looks if the given parameter number is a prime number and returns a Boolean.
+        Idea from the method came from the website http://stackoverflow.com/questions/18833759/python-prime-number-checker
 
         :param int number: Takes a number
-        :return Bool is_prime: Returns
+        :return Boolean is_prime: Returns a Boolean to see if the given number is a prime number
         """
-        for i in range(2, number):
-            if not i % number == 0:
+        if number % 2 == 0 and number > 2:
+            return False
+        for i in range(3, int(math.sqrt(number)) + 1, 2):
+            if number % i == 0:
                 return False
         return True

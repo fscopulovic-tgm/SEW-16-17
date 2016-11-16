@@ -3,7 +3,7 @@
 @date: 11-11-2016
 @use: Consumer prints the prime number out that the producer finds
 """
-import threading, queue
+import threading
 
 class Consumer(threading.Thread):
     """
@@ -15,7 +15,7 @@ class Consumer(threading.Thread):
 
     def __init__(self, queue, prime_file):
         """
-        Constructor of the Consumer class
+        Constructor of the Consumer class.
 
         :param queue: takes the queue as a parameter
         :param prime_file: a file where the Consumer writes the prime numbers in
