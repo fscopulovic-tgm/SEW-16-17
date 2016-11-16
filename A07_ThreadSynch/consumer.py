@@ -13,19 +13,26 @@ class Consumer(threading.Thread):
     :inheritance threading.Thread:
     """
 
-    def __init__(self, queue):
+    def __init__(self, queue, prime_file):
         """
         Constructor of the Consumer class
 
         :param queue: takes the queue as a parameter
+        :param prime_file: a file where the Consumer writes the prime numbers in
         """
         threading.Thread.__init__(self)
         self.queue = queue
+        self.prime_file = prime_file
 
     def run(self):
         """
-
+        Endless loop that waits for the producer to get the prime numbers from the queue.
+        Prints out the prime number in the console and write it in a .txt-file.
 
         :return None:
         """
-        pass
+        while True:
+            number = self.queue.get()
+            print("Found prime number is %s" % (str(number)))
+            self.prime_file.write(str(number) + "\n")
+            self.queue.task_done()
