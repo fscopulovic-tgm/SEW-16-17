@@ -17,8 +17,8 @@ class Consumer(threading.Thread):
         """
         Constructor of the Consumer class.
 
-        :param queue: takes the queue as a parameter
-        :param prime_file: a file where the Consumer writes the prime numbers in
+        :param Queue queue: takes the queue as a parameter
+        :param object prime_file: a file where the Consumer writes the prime numbers in
         """
         threading.Thread.__init__(self)
         self.queue = queue

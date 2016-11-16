@@ -31,7 +31,7 @@ class Producer(threading.Thread):
 
         :return None:
         """
-        number = 3
+        number = 0
         while True:
             if self.is_prime_number(number):
                 self.queue.put(number)
@@ -45,7 +45,7 @@ class Producer(threading.Thread):
         Idea from the method came from the website http://stackoverflow.com/questions/18833759/python-prime-number-checker
 
         :param int number: Takes a number
-        :return Boolean is_prime: Returns a Boolean to see if the given number is a prime number
+        :return bool is_prime: Returns a Boolean to see if the given number is a prime number
         """
         if number % 2 == 0 and number > 2:
             return False
