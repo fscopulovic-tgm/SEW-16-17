@@ -17,7 +17,7 @@ class Run_script:
         """
         self.queue = queue.Queue()
 
-        self.file = open("files/prime_numbers.txt", 'w')
+        self.file = open("prime_numbers.txt", 'w')
 
         self.t_producer = producer.Producer(self.queue)
         self.t_consumer = consumer.Consumer(self.queue, self.file)
