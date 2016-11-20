@@ -1,1 +1,21 @@
 %!TEX root=../document.tex
+
+\section{Aufgabe}
+\subsection{Vorgangsweise}
+Das, von dem Herr Professor Rafeiner-Magor, zur Verfügung gestellte \verb|pdf|-File\footnote{SEW\_4\_Events\_Bedingungsvariablen\_Queues\_Python.pdf}\space über \verb|Events|,\space\verb|Bedingungsvariablen| und \verb|Queues| war Anhaltspunkt für die Aufgabe. Durch dieses \verb|pdf|-File konnte ich mich sehr leicht an diese Aufgabe gewöhnen. Mit dem \verb|pdf|-File habe ich sofort begonnen meine Ideen zu Implementieren.
+\subsection{Aufwand}
+Der Aufwand war gering. Nachdem ich mich über \verb|Queues| informiert habe, war die Aufgabe leicht. Jedoch hatte ich Schwierigkeiten bei dem vollführen der erweiterten Aufgaben. Die Angabe hat mich verwirrt.
+\subsection{Resultate}
+Mein Resultat war ein \verb|txt|-File im Ordner \verb|files|. Dieses \verb|txt|-File ist gefühlt mit den ganzen Primzahlen, die gefunden wurden. Bei jedem neuen Aufruf wird das \verb|txt|-File überschrieben. Zudem wird in der Konsole außerdem die Primzahlen ausgegeben.
+So stehen die Primzahlen im \verb|txt|-File.
+\lstinputlisting[language=bash,caption=Primzahlen im txt-File]{code/primzahlen.txt}
+So werden die Primzahlen in der Konsole ausgegeben.
+\lstinputlisting[language=bash,caption=Ausgabe in der Konsole]{code/ausgabe.txt}
+\subsection{Beobachtungen}
+Ich fand es interessant wie es mit der \verb|Queue| funktionieren konnte und kein \verb|lock| oder Sonstiges benötitgt wurde.
+\subsection{Schwierigkeiten}
+Schwierigkeiten haben mir die Erweiterungen der Aufgabe bereitet. Hauptsächlich weil ich sie erst nach mehrfachen lesen verstanden habe. Sie waren recht unklar formuliert.
+\subsection{Code}
+\lstinputlisting[language=Python,caption=Verbraucher]{../consumer.py}
+\lstinputlisting[language=Python,caption=Erzeuger]{../producer.py}
+\lstinputlisting[language=Python,caption=Start]{../run_script.py}

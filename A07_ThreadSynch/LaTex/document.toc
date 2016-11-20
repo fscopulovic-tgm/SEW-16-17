@@ -1,1 +1,8 @@
 \select@language {ngerman}
+\contentsline {section}{\numberline {1}Aufgabe}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Vorgangsweise}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Aufwand}{1}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Resultate}{1}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Beobachtungen}{2}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Schwierigkeiten}{2}{subsection.1.5}
+\contentsline {subsection}{\numberline {1.6}Code}{2}{subsection.1.6}

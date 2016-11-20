@@ -21,7 +21,6 @@ class Producer(threading.Thread):
         """
         threading.Thread.__init__(self)
         self.queue = queue
-        print("Producer in")
 
     def run(self):
         """
