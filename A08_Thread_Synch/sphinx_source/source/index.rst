@@ -6,12 +6,24 @@
 Welcome to A08 Thread Synch's documentation!
 ============================================
 
-Contents:
+Bibliographic fields:
+---------------------
+   :Author: Filip Scopulovic
+   :organization: TGM Wien
+   :date: 2016-11-21
+   :status: "Finished"
+   :revision: 1.0
+   :version: 1.0
 
+Contents:
+---------
 .. toctree::
    :maxdepth: 2
 
-
+   consumer
+   producer
+   script_start
+   watch_dog
 
 Indices and tables
 ==================

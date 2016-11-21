@@ -40,5 +40,9 @@ class Consumer(threading.Thread, Stopable):
         :return None:
         """
         while self.running:
-            print("Random Number is %s \n" % (str(self.queue.get())), end="")
-            self.queue.task_done()
+            if self.queue.empty():
+                print("Queue is empty queue element: %s\n" % (str(self.queue.qsize())), end="")
+                #self.queue.task_done()
+            else:
+                print("Random Number is %s, queue element: %s\n" % (str(self.queue.get()), str(self.queue.qsize())), end="")
+                self.queue.task_done()

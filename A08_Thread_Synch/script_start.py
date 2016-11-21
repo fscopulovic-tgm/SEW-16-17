@@ -18,10 +18,10 @@ c2 = consumer.Consumer(qu)
 p1 = producer.Producer(qu)
 p2 = producer.Producer(qu)
 #Adds all the threads together
-threads.append(c1)
-threads.append(c2)
 threads.append(p1)
 threads.append(p2)
+threads.append(c1)
+threads.append(c2)
 
 running_time = 2
 #Initializes the watch dog
