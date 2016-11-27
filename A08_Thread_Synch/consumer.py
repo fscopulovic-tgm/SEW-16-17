@@ -3,7 +3,7 @@
 @date: 21-11-2016
 @use: consumer prints out the numbers from the queue
 """
-import threading, queue
+import threading, queue, time
 from watch_dog import Stopable
 
 class Consumer(threading.Thread, Stopable):
@@ -40,9 +40,15 @@ class Consumer(threading.Thread, Stopable):
         :return None:
         """
         while self.running:
+            time.sleep(0.01)
             if self.queue.empty():
-                print("Queue is empty queue element: %s\n" % (str(self.queue.qsize())), end="")
+                print("Queue is empty\t\t\t|\t\tqueue element: %s\n\n" % (str(self.queue.qsize())), end="")
                 #self.queue.task_done()
             else:
-                print("Random Number is %s, queue element: %s\n" % (str(self.queue.get()), str(self.queue.qsize())), end="")
+                #Koennte wie beim Producer ein Einzeiler sein, wollte aber einen schoeneren Output haben und deshalb so "kompliziert"
+                got_number = self.queue.get()
+                if got_number < 10:
+                    print("Random number %s\t\t\t|\t\tqueue element: %s\n\n" % (str(got_number), str(self.queue.qsize())), end="")
+                else:
+                    print("Random number %s\t\t|\t\tqueue element: %s\n\n" % (str(got_number), str(self.queue.qsize())), end="")
                 self.queue.task_done()

@@ -1,0 +1,4 @@
+Made number 24			|		queue element: 1
+Random number 24		|		queue element: 0
+
+Queue is empty			|		queue element: 0

@@ -42,8 +42,8 @@ class Producer(threading.Thread, Stopable):
         while self.running:
             rand_num = random.randint(0, 254)
             if self.queue.full():
-                print("Queue is full, queue element: %s\n" % (str(self.queue.qsize())), end="")
+                print("Queue is full\t\t\t|\t\tqueue element: %s\n\n" % (str(self.queue.qsize())), end="")
             else:
                 self.queue.put(rand_num)
-                print("Made number %s, queue element: %s\n" % (str(rand_num), str(self.queue.qsize())), end="")
+                print("Made number %s\t\t\t|\t\tqueue element: %s\n" % (str(rand_num), str(self.queue.qsize())), end="")
             self.queue.join()

@@ -11,12 +11,12 @@ threads = []
 qu = queue.Queue()
 #Sets the maximum size for the queue at 20
 qu.maxsize = 20
-#Initalizes the Consumers
-c1 = consumer.Consumer(qu)
-c2 = consumer.Consumer(qu)
 #Initalizes the Producer
 p1 = producer.Producer(qu)
 p2 = producer.Producer(qu)
+#Initalizes the Consumers
+c1 = consumer.Consumer(qu)
+c2 = consumer.Consumer(qu)
 #Adds all the threads together
 threads.append(p1)
 threads.append(p2)

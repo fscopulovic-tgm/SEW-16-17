@@ -1,0 +1,19 @@
+%!TEX root=../document.tex
+
+\section{Aufgabe}
+\subsection{Vorgangsweise}
+Mit einem von dem Herr Professor Rafeiner-Magor bereitgestelltem \verb|pdf|-File. Mit diesem haben wir uns über \verb|Watchdogs| informiert. Diese waren die einzige Neuheit bei der Aufgabe, ansonsten war alles wie gewohnt.
+\subsection{Aufwand}
+Der Aufwand war gering. Einerseits hatten wir die \verb|Watchdogs|-Klasse vorgegebenen und andererseits haben wir schon ein \glqq schwereres\grqq\space \verb|Consumer-Producer|-Schema implementiert.
+\subsection{Resultat}
+Ich habe ein Ausgabeschema überlegt, welches schön aussieht. So circa sieht es aus:
+\lstinputlisting[language=Bash,caption=Ausgabeschema]{code/resultat.txt}
+\subsection{Beobachtungen}
+Meine Beobachtung war die, das man den \verb|Consumer| mit \verb|time.sleep()| warten lassen musste, damit die Queue nicht immer leer ist.
+\subsection{Schwierigkeiten}
+Schwierigkeiten hat mir der letzte Punkt der erweiterten Aufgabenstellung eingebracht, da ich nicht wusste, wie man das implementiert. Deshalb habe ich es auch gelassen.\clearpage
+\subsection{Code}
+\lstinputlisting[language=Python,caption=Watchdog]{../watch_dog.py}\clearpage
+\lstinputlisting[language=Python,caption=Verbraucher]{../consumer.py}\clearpage
+\lstinputlisting[language=Python,caption=Erzeuger]{../producer.py}\clearpage
+\lstinputlisting[language=Python,caption=Start]{../script_start.py}
