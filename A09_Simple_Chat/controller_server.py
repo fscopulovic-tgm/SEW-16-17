@@ -14,6 +14,7 @@ class Controller_Server(QtGui.QMainWindow):
     :inheritance QtGui.QtWidget:
     """
 
+    #TODO add a model as a parameter
     def __init__(self, parent=None):
         """
         Constructor for the controller of the server
@@ -26,16 +27,14 @@ class Controller_Server(QtGui.QMainWindow):
         self.model = model.Model()
 
         self.__server_form.setupUi(self)
-        self.__con_clients = self.__server_form.server_show_client
+        self.__server_show_client = self.__server_form.server_show_client
         self.__chat_server = self.__server_form.chat_server
 
-        self.con_server()
-
-    def get_con_clients_text(self):
+    def get_server_show_client_text(self):
         """
         :return __con_clients: Returns the text field with the connected clients
         """
-        return self.__con_clients.getText()
+        return self.__server_show_client.getText()
 
     def get_chat_server_text(self):
         """
@@ -51,17 +50,15 @@ class Controller_Server(QtGui.QMainWindow):
 
         :return None:
         """
-        self.__chat_server.setText(self.__chat_server.getText() +"\ntext")
+        self.__chat_server.setText(self.model.get_chat())
 
-    def set_con_clients(self, client_number):
+    def write_new_client(self):
         """
-        Sets the text in the text field __con_clients
-
-        :param text: Takes a text to set in the __con_clients
+        Sets the text in the text field __server_show_client
 
         :return None:
         """
-        self.__con_clients.setText(self.__con_clients.getText() + "\nClient " + client_number + " ist verbunden!")
+        self.__server_show_client.setPlainText(self.__server_show_client.toPlainText() + "\nClient " + str(self.model.get_client_number()) + " ist verbunden!")
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)

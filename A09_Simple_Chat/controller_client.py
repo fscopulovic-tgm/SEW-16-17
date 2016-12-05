@@ -15,6 +15,7 @@ class Controller_Client(QtGui.QMainWindow):
     :inheritance QtGui.QtWidget:
     """
 
+    # TODO add a model as a parameter
     def __init__(self, parent=None):
         """
         Constructor for the controller of the server
@@ -45,10 +46,11 @@ class Controller_Client(QtGui.QMainWindow):
 
     def send_msg(self):
         """
-        Sends a message to the chat
+        Sends a message to the chat and also sets it in the chat
 
         :return: None
         """
+        self.__model.update_chat(self.__msg_text)
         self.__chat_text.setText(self.__model.get_chat())
 
 if __name__ == "__main__":

@@ -3,10 +3,11 @@
 @date: 30-11-2016
 @use: Server thread
 """
-import threading, socket
+import threading, socket, controller_server, model
 
 class Server_Thread(threading.Thread):
-
+    
+    # TODO add a model as a parameter
     def __init__(self, host):
         """
         Construktor for the client_thread
@@ -20,7 +21,7 @@ class Server_Thread(threading.Thread):
         self.__port = 0
         self.__max_clients = 10
         self.__serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
+        self.__server_gui = controller_server.Controller_Server()
 
     def run(self):
         """
@@ -28,7 +29,7 @@ class Server_Thread(threading.Thread):
 
         :return: None
         """
-        pass
+        self.__server_gui.show()
 
     def bind_server(self):
         """
@@ -44,3 +45,15 @@ class Server_Thread(threading.Thread):
         :return self.__serversocket.getsockname()[1]: Returns the port number that is picked by the OS
         """
         return self.__serversocket.getsockname()[1]
+
+class Listening_Server_Thread(threading.Thread):
+    """
+    Listens if something happens and reacts to it
+    """
+
+    def __init__(self):
+
+        threading.Thread.__init__(self)
+
+    def run(self):
+        pass
