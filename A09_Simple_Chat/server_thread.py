@@ -6,7 +6,7 @@
 import threading, socket, controller_server, model
 
 class Server_Thread(threading.Thread):
-    
+
     # TODO add a model as a parameter
     def __init__(self, host):
         """

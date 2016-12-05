@@ -34,23 +34,14 @@ class Controller_Client(QtGui.QMainWindow):
         self.__chat_text = self.__server_form.chat_client
         self.__msg_text = self.__server_form.message_client
 
-    def new_client(self):
-        """
-        Initializes a new client
-
-        :return: None
-        """
-        print("Neuer Client auf dem Weg Cx")
-        self.__model.add_new_client()
-        print(self.__model.get_client_number())
-
     def send_msg(self):
         """
         Sends a message to the chat and also sets it in the chat
 
         :return: None
         """
-        self.__model.update_chat(self.__msg_text)
+        print(self.__msg_text.text())
+        self.__model.update_chat(self.__msg_text.text(), self.client_number)
         self.__chat_text.setText(self.__model.get_chat())
 
 if __name__ == "__main__":

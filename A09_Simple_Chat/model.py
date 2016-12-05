@@ -75,10 +75,10 @@ class Model:
         return self.__chat
 
     # TODO Client der gesendet hat, muss hinzugefügt werden
-    def update_chat(self, to_update):
+    def update_chat(self, client_number,to_update):
         """
         Updates the chat
 
         :return: None
         """
-        self.__chat += "Client :" + to_update + "\n"
+        self.__chat += "Client " + client_number + ":" + to_update + "\n"
