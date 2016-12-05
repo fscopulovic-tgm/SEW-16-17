@@ -31,18 +31,37 @@ class Controller_Server(QtGui.QMainWindow):
 
         self.con_server()
 
-    def con_server(self):
+    def get_con_clients_text(self):
         """
-        Method for starting a server thread, will start when the GUI starts
-
-        :return: None
+        :return __con_clients: Returns the text field with the connected clients
         """
-        server = server_thread.Server_Thread(self.model.get_host())
-        server.bind_server()
+        return self.__con_clients.getText()
 
-        self.model.set_port(server.get_port_number())
+    def get_chat_server_text(self):
+        """
+        :return __chat_server: Returns the text field with the chat
+        """
+        return self.__chat_server.getText()
 
-        server.start()
+    def set_chat_server(self, text):
+        """
+        Sets the text in the text field __chat_serbver
+
+        :param text: Takes a text to set in the __chat_server
+
+        :return None:
+        """
+        self.__chat_server.setText(self.__chat_server.getText() +"\ntext")
+
+    def set_con_clients(self, client_number):
+        """
+        Sets the text in the text field __con_clients
+
+        :param text: Takes a text to set in the __con_clients
+
+        :return None:
+        """
+        self.__con_clients.setText(self.__con_clients.getText() + "\nClient " + client_number + " ist verbunden!")
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
