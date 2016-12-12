@@ -1,84 +1,42 @@
 """
 @author: Filip Scopulovic
 @date: 30-11-2016
-@use: Model for both client and server
+@use: Model for the MVC-model
 """
 
 class Model:
     """"
-    Model that has every variable in it
+    Model that contains a list of clients and getter and setter
     """
 
     def __init__(self):
         """
-        Constructor for the model
-        Initializes every variable that is needed
+        Initializes the clients
         """
-        self.__host = 'localhost'
-        self.__port = 0
-        self.__threads = []
-        self.__client_number = 0
-        self.__chat = ""
+        self.__clients = []
 
-    def get_host(self):
+    def get_clients(self):
         """
-        :return self.__host: Returns the host number
+        :return __clients: returns the list of the clients
         """
-        return self.__host
+        return self.__clients
 
-    def get_port(self):
+    def add_client(self, client):
         """
-        :return self.__port: Returns the port number
-        """
-        return self.__port
+        Appends a new client to __clients
 
-    def set_port(self, port_number):
-        """
-        Sets the port number
+        :param client: The needed client
 
-        :return: None
+        :return None:
         """
-        self.__port = port_number
+        self.__clients.append(client)
 
-    def get_threads(self):
+    def del_client(self, client):
         """
-        :return self.threads: Returns the list of threads
-        """
-        return self.__threads
+        Removes a client from __clients
 
-    def add_thread(self, thread):
-        """
-        Adds a thread to the self.__threads list
+        :param client: The needed client
 
-        :return: None
+        :return None:
         """
-        self.__threads.append(thread)
-
-    def get_client_number(self):
-        """
-        :return self.__client_number: Returns the client number
-        """
-        return self.__client_number
-
-    def add_new_client(self):
-        """
-        Increments the self.__client_number method
-
-        :return: None
-        """
-        self.__client_number += 1
-
-    def get_chat(self):
-        """
-        :return self.__chat: Returns the chat
-        """
-        return self.__chat
-
-    # TODO Client der gesendet hat, muss hinzugefügt werden
-    def update_chat(self, client_number,to_update):
-        """
-        Updates the chat
-
-        :return: None
-        """
-        self.__chat += "Client " + client_number + ":" + to_update + "\n"
+        self.__clients.remove(client)

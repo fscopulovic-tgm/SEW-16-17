@@ -10,7 +10,17 @@
 from PySide import QtCore, QtGui
 
 class Ui_client_gui(object):
+    """
+    Class for the client GUI
+    """
     def setupUi(self, client_gui):
+        """
+        Sets the client GUI
+
+        :param client_gui:
+
+        :return None:
+        """
         client_gui.setObjectName("client_gui")
         client_gui.resize(384, 256)
         self.centralwidget = QtGui.QWidget(client_gui)
@@ -47,6 +57,13 @@ class Ui_client_gui(object):
         QtCore.QMetaObject.connectSlotsByName(client_gui)
 
     def retranslateUi(self, client_gui):
+        """
+        Retranslates the UI
+
+        :param client_gui:
+
+        :return None:
+        """
         client_gui.setWindowTitle(QtGui.QApplication.translate("client_gui", "Client ", None, QtGui.QApplication.UnicodeUTF8))
         self.con_button.setText(QtGui.QApplication.translate("client_gui", "Connect", None, QtGui.QApplication.UnicodeUTF8))
         self.con_label.setText(QtGui.QApplication.translate("client_gui", "Status: Not connected", None, QtGui.QApplication.UnicodeUTF8))

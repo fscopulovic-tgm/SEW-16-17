@@ -10,7 +10,18 @@
 from PySide import QtCore, QtGui
 
 class Ui_server_gui(object):
+    """
+    Class for server GUI
+    """
+
     def setupUi(self, server_gui):
+        """
+        Sets the server GUI
+
+        :param server_gui:
+
+        :return None:
+        """
         server_gui.setObjectName("server_gui")
         server_gui.resize(346, 319)
         self.centralwidget = QtGui.QWidget(server_gui)
@@ -38,6 +49,13 @@ class Ui_server_gui(object):
         QtCore.QMetaObject.connectSlotsByName(server_gui)
 
     def retranslateUi(self, server_gui):
+        """
+        Retranslates the UI
+
+        :param server_gui:
+
+        :return None:
+        """
         server_gui.setWindowTitle(QtGui.QApplication.translate("server_gui", "Server", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("server_gui", "Connected Clients:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("server_gui", "Chat:", None, QtGui.QApplication.UnicodeUTF8))

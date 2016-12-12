@@ -6,11 +6,25 @@
 Welcome to A09 Simple Chat's documentation!
 ===========================================
 
-Contents:
+Bibliographic fields:
+---------------------
+   :Author: Filip Scopulovic
+   :organization: TGM Wien
+   :date: 2016-12-7
+   :status: "Finished"
+   :revision: 1.0
+   :version: 1.0
 
+Contents:
+---------
 .. toctree::
    :maxdepth: 2
 
+   controller_thread_client
+   controller_thread_server
+   model
+   view_client
+   view_server
 
 
 Indices and tables
