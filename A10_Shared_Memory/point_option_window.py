@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/Filip/Desktop/Daten/Schule/4CHIT/SEW_4CHIT/SEW-16-17/A10_Shared_Memory/A10_PointOption_Window.ui'
 #
-# Created: Mon Dec 12 11:03:03 2016
+# Created: Sun Dec 18 19:22:35 2016
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -10,17 +10,7 @@
 from PySide import QtCore, QtGui
 
 class Ui_point_options(object):
-    """
-    GUI for the point_options
-    """
     def setupUi(self, point_options):
-        """
-        Sets up the GUI
-
-        :param paint_widget:
-
-        :return None:
-        """
         point_options.setObjectName("point_options")
         point_options.resize(482, 379)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
@@ -81,13 +71,6 @@ class Ui_point_options(object):
         QtCore.QMetaObject.connectSlotsByName(point_options)
 
     def retranslateUi(self, point_options):
-        """
-        Translates the GUI
-
-        :param paint_widget:
-
-        :return None:
-        """
         point_options.setWindowTitle(QtGui.QApplication.translate("point_options", "Point Options", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("point_options", "Blue", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("point_options", "Green", None, QtGui.QApplication.UnicodeUTF8))
