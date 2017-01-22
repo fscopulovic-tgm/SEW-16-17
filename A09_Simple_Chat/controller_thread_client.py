@@ -64,7 +64,7 @@ class Controller_Client(QMainWindow):
         self.__client_form.setupUi(self)
         self.__client_form.con_button.clicked.connect(self.__connect_client)
 
-        self.__chat_text = self.__client_form.chat_client
+        self.__chat_text = self.__client_form.chat_clien
         self.__msg_text = self.__client_form.message_client
         self.__client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 

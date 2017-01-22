@@ -10,7 +10,18 @@
 from PySide import QtCore, QtGui
 
 class Ui_paint_widget(object):
+    """
+    Class for the GUI
+    """
+
     def setupUi(self, paint_widget):
+        """
+        Sets up the GUI
+
+        :param paint_widget:
+
+        :return None:
+        """
         paint_widget.setObjectName("paint_widget")
         paint_widget.resize(913, 609)
         self.gridLayout = QtGui.QGridLayout(paint_widget)
@@ -69,6 +80,10 @@ class Ui_paint_widget(object):
         QtCore.QMetaObject.connectSlotsByName(paint_widget)
 
     def retranslateUi(self, paint_widget):
+        """
+        :param paint_widget:
+        :return None:
+        """
         paint_widget.setWindowTitle(QtGui.QApplication.translate("paint_widget", "My Floating Points", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("paint_widget", "Red", None, QtGui.QApplication.UnicodeUTF8))
         self.red_label.setText(QtGui.QApplication.translate("paint_widget", "1", None, QtGui.QApplication.UnicodeUTF8))
