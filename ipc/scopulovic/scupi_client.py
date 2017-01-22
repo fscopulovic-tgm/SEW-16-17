@@ -11,6 +11,7 @@ class TypeImportance(Enum):
 
     if bomb is found, then the enemy castle gets a 0 and bomb a 6, otherwise the enemy castle is 6
     """
+    HAS_BOMB = 6
     ENEMY_CASTLE = 6
     SELF_CASTLE = 5
     LAKE = 4
@@ -18,6 +19,8 @@ class TypeImportance(Enum):
     GRASS = 2
     MOUNTAIN = 1
     BOMB = 0
+    HAS_CASTLE = 0
+
 
 class scupi_client:
 
@@ -28,7 +31,6 @@ class scupi_client:
         :param x_map_size: x-size of the map
         :param y_map_size: y-size of the map
         """
-        self.importance = TypeImportance(Enum)
         self.xy = [0, 0]
         self.has_bomb = False
         self.map = []
@@ -37,6 +39,7 @@ class scupi_client:
             for y in range(y_map_size):
                 self.map[x] += "0"
         self.print_map()
+        self.start_game()
 
     def start_game(self):
         """
@@ -50,29 +53,25 @@ class scupi_client:
                 clientsocket.send("Scupi".encode())
                 while True:
                     data = clientsocket.recv(1024).decode()
-                    if not data or not data=="OK":
+                    if not data or not data == "OK":
                         print("Connection is closed")
                         clientsocket.close()
                     else:
                         server_map = data
                         self.add_view(server_map)
                         self.print_map()
-                        if self.has_bomb:
-                            self.set_enum_after_bomb()
-                            self.has_bomb = False
                         #TODO Implement algorithm
-
-
-    def set_enum_after_bomb(self):
-        """
-        Changes the value of the BOMB and ENEMY_CASTLE
-
-        :return None:
-        """
-        self.importance.BOMB = 6
-        self.importance.ENEMY_CASTLE = 0
+            except socket.error as serr:
+                print("Socket error: " + serr.strerror)
 
     def add_view(self, view):
+        """
+        Adds the map from the server to the intern map
+        The method was provided by Maximillian Müller to me
+
+        :param view: The map, that is provided by the server
+        :return None:
+        """
         dist = (len(view) - 1) / 2
         print(dist)
         for y in range(0, len(view)):
@@ -89,6 +88,8 @@ class scupi_client:
                     b = b - len(self.map)
                 a = int(a)
                 b = int(b)
+                print(a)
+                print(b)
                 self.map[b][a] = view[y][x].upper()
 
     def print_map(self):
