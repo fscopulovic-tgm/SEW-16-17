@@ -1,30 +1,8 @@
 import socket
-from enum import Enum
-
-class TypeImportance(Enum):
-    """
-    Ranking which fields are important,
-    bomb hast importance 0, which is the highest
-    mountain has importance 1, which is the second on the ranking
-    and so on
-    Ranking can change due after considering the algorithm
-
-    if bomb is found, then the enemy castle gets a 0 and bomb a 6, otherwise the enemy castle is 6
-    """
-    HAS_BOMB = 6
-    ENEMY_CASTLE = 6
-    SELF_CASTLE = 5
-    LAKE = 4
-    FOREST = 3
-    GRASS = 2
-    MOUNTAIN = 1
-    BOMB = 0
-    HAS_CASTLE = 0
-
 
 class scupi_client:
 
-    def __init__(self, x_map_size, y_map_size):
+    def __init__(self, square_size=10):
         """
         Initializes everything that is needed for the client to work
 
@@ -32,13 +10,13 @@ class scupi_client:
         :param y_map_size: y-size of the map
         """
         self.xy = [0, 0]
+        self.map_size = square_size
         self.has_bomb = False
         self.map = []
-        for x in range(x_map_size):
+        for x in range(self.map_size):
             self.map.append([])
-            for y in range(y_map_size):
+            for y in range(self.map_size):
                 self.map[x] += "0"
-        self.print_map()
         self.start_game()
 
     def start_game(self):
@@ -53,44 +31,75 @@ class scupi_client:
                 clientsocket.send("Scupi".encode())
                 while True:
                     data = clientsocket.recv(1024).decode()
-                    if not data or not data == "OK":
+                    if not data:
                         print("Connection is closed")
                         clientsocket.close()
+                        break
                     else:
-                        server_map = data
-                        self.add_view(server_map)
-                        self.print_map()
-                        #TODO Implement algorithm
+                        self.add_view(data)
+                        # TODO Implement algorithm
             except socket.error as serr:
                 print("Socket error: " + serr.strerror)
 
     def add_view(self, view):
         """
-        Adds the map from the server to the intern map
-        The method was provided by Maximillian Müller to me
+        Adds the new map components from the server to the intern map
 
-        :param view: The map, that is provided by the server
+        :param view: Message from the server
         :return None:
         """
-        dist = (len(view) - 1) / 2
-        print(dist)
-        for y in range(0, len(view)):
-            for x in range(0, len(view)):
-                a = self.xy[0] + x - dist
-                b = self.xy[1] + y - dist
-                if a < 0:
-                    a = len(self.map) + a
-                if a >= len(self.map):
-                    a = a - len(self.map)
-                if b < 0:
-                    b = len(self.map) + b
-                if b >= len(self.map):
-                    b = b - len(self.map)
-                a = int(a)
-                b = int(b)
-                print(a)
-                print(b)
-                self.map[b][a] = view[y][x].upper()
+        dist = 0
+        if len(view) == 50:
+            dist = 5
+        elif len(view) == 18:
+            dist = 3
+        elif len(view) == 98:
+            dist = 7
+        start_y = -int(dist / 2)
+        dx = 0
+        dy = 2
+        for x in range(dist):
+            start_x = -int(dist / 2)
+            for y in range(dist):
+                if self.map[self.get_pos_x(start_x)][self.get_pos_y(start_y)] == "0":
+                    # TODO implement a way to save the map components in the right way
+                    self.map[self.get_pos_x(start_x)][self.get_pos_y(start_y)] = view[dx:dy]
+                start_x += 1
+                dx += 2
+                dy += 2
+            start_y += 1
+        self.print_map()
+
+
+    def get_pos_y(self, y):
+        """
+        Returns the y-value of the parameter y and then it checks if it is bigger or smaller than the map size y
+        and adds or takes it minus the map size y
+
+        :param y: y-variable that needs to get checked
+        :return None:
+        """
+        new_y = self.xy[1] + y
+        if new_y < 0:
+            return new_y + self.map_size
+        elif new_y > self.map_size- 1:
+            return new_y - self.map_size
+        return new_y
+
+    def get_pos_x(self, x):
+        """
+        Returns the x-value of the parameter x and then it checks if it is bigger or smaller than the map size x
+        and adds or takes it minus the map size x
+
+        :param x: x-variable that needs to get checked
+        :return None:
+        """
+        new_x = self.xy[0] + x
+        if new_x < 0:
+            return new_x + self.map_size
+        elif new_x > self.map_size - 1:
+            return new_x - self.map_size
+        return new_x
 
     def print_map(self):
         """
@@ -101,4 +110,4 @@ class scupi_client:
         for s in self.map:
             print(s)
 
-test = scupi_client(10, 10)
+test = scupi_client(10)
