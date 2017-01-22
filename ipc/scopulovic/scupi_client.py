@@ -29,8 +29,7 @@ class scupi_client:
         :param y_map_size: y-size of the map
         """
         self.importance = TypeImportance(Enum)
-        self.x_player = 0
-        self.y_player = 0
+        self.xy = [0, 0]
         self.has_bomb = False
         self.map = []
         for x in range(x_map_size):
@@ -62,6 +61,7 @@ class scupi_client:
                             self.set_enum_after_bomb()
                             self.has_bomb = False
                         #TODO Implement algorithm
+
 
     def set_enum_after_bomb(self):
         """
