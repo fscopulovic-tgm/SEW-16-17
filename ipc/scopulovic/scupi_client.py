@@ -1,27 +1,30 @@
 import socket
 
-class scupi_client:
+
+class FilipClient:
+    """
+    The class that is a self playing client for the game ipc
+    """
 
     def __init__(self, square_size=10):
         """
         Initializes everything that is needed for the client to work
 
-        :param x_map_size: x-size of the map
-        :param y_map_size: y-size of the map
+        :param square_size: It is set to 10, it is the map size as a square
         """
         self.xy = [0, 0]
         self.map_size = square_size
         self.has_bomb = False
         self.map = []
-        for x in range(self.map_size):
+        for y in range(self.map_size):
             self.map.append([])
-            for y in range(self.map_size):
-                self.map[x] += "0"
+            for x in range(self.map_size):
+                self.map[y] += "0"
         self.start_game()
 
     def start_game(self):
         """
-        Starts the game, server connection etc.
+        Dijkstra algorithm selected, but maybe I will do my own algorithm
 
         :return None:
         """
@@ -37,9 +40,27 @@ class scupi_client:
                         break
                     else:
                         self.add_view(data)
-                        # TODO Implement algorithm
-            except socket.error as serr:
-                print("Socket error: " + serr.strerror)
+                        # TODO implement algorithm
+            except socket.error as server_error:
+                print("Socket error: " + server_error.strerror)
+
+    def search_field(self, field):
+        """
+        Iteraters through the whole map and searches for field if field is found
+        or B (the bomb) is found he return the y and x value
+
+        :param field: The field that you want to search for
+        :return [y, x] or None: Returns None if the field is not found, else it returns a list with y and x
+        """
+        for y in self.map:
+            for x in y:
+                help_var = self.map[self.get_pos_y(y)][self.get_pos_x(x)]
+                if help_var[1:2] == "B" \
+                        or help_var[0:1] == field \
+                        and not help_var == self.map[0][0] \
+                        and not help_var == self.map[self.get_pos_y(self.xy[1])][self.get_pos_x(self.xy[0])]:
+                    return [y, x]
+        return None
 
     def add_view(self, view):
         """
@@ -61,15 +82,14 @@ class scupi_client:
         for x in range(dist):
             start_x = -int(dist / 2)
             for y in range(dist):
-                if self.map[self.get_pos_x(start_x)][self.get_pos_y(start_y)] == "0":
-                    # TODO implement a way to save the map components in the right way
-                    self.map[self.get_pos_x(start_x)][self.get_pos_y(start_y)] = view[dx:dy]
+                if self.map[self.get_pos_y(start_y)][self.get_pos_x(start_x)] == "0":
+                    self.map[self.get_pos_y(start_y)][self.get_pos_x(start_x)] = view[dx:dy]
                 start_x += 1
                 dx += 2
                 dy += 2
             start_y += 1
+        print(view)
         self.print_map()
-
 
     def get_pos_y(self, y):
         """
@@ -82,7 +102,7 @@ class scupi_client:
         new_y = self.xy[1] + y
         if new_y < 0:
             return new_y + self.map_size
-        elif new_y > self.map_size- 1:
+        elif new_y > self.map_size - 1:
             return new_y - self.map_size
         return new_y
 
