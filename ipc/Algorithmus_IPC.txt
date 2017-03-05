@@ -1,0 +1,16 @@
+# alles durchlaufen, sagen wir mal, ich bekomm eine liste mit 3 Mountains, 
+# dann überprüf bau ich eine lokale Variable namens path ein
+
+sim_player_pos = self.yx
+path = [] # worked so wie die Map, also hat es noch eine Liste pro Pfad und die hat die ENUM-Werte LEFT, RIGHT, UP, DOWN
+if self.map[get_y(sim_player_pos[0])][get_x(sim_player_pos[1])] == "L":
+	# Lösch den drumherum gehen oder den Pfad löschen
+else:
+	# Richtung zu path hinzufügen
+# path ist der Pfad, der quasi die Spielerposition übernimmt und schaut, was am in welcher
+# Richtung sich das Feld bewegt. Man bekommt ja durch search_field eine liste mit [y,x]-Variablen
+# also probier ich ein paar Möglichkeiten aus und mach ein dict, der die Kosten 
+# (Also wie viele Züge es bräuchte, die bekommt man, indem man Size anwendet)
+# und den Path dazu, das sieht dann so aus [ [[0, -1], [1, 0]] ], das bedeutet also man hat den Path zu dem gewünschten Feld
+# er pickt sich dann die Liste, mit den wenigsten Kosten und geht dann diese ab, zudem löscht er immer den ersten Eintrag um
+# Fehler zu verhindern

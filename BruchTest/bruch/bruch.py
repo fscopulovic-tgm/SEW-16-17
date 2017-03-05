@@ -203,5 +203,3 @@ class Bruch:
         :return: Bruch
         """
         self.__mul__(other)
-
-    
