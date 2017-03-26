@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="client.ClientGUI">
+  <grid id="27dc6" binding="clientFrame" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="527" height="134"/>
+    </constraints>
+    <properties/>
+    <border type="none" title="Abonennt">
+      <font/>
+    </border>
+    <children>
+      <component id="7f442" class="javax.swing.JButton" binding="deabonnierenButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <defaultCapable value="true"/>
+          <enabled value="false"/>
+          <selected value="false"/>
+          <text value="Deabonnieren"/>
+          <visible value="true"/>
+        </properties>
+      </component>
+      <component id="c3ce1" class="javax.swing.JButton" binding="deabonnierenButton1" default-binding="true">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Deabonnieren"/>
+        </properties>
+      </component>
+      <component id="1676b" class="javax.swing.JButton" binding="deabonnierenButton2" default-binding="true">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Deabonnieren"/>
+        </properties>
+      </component>
+      <component id="39e1f" class="javax.swing.JButton" binding="abonnierenButton">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Abonnieren"/>
+        </properties>
+      </component>
+      <component id="bd234" class="javax.swing.JButton" binding="abonnierenButton1">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Abonnieren"/>
+        </properties>
+      </component>
+      <component id="cfaa6" class="javax.swing.JButton" binding="abonnierenButton2">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Abonnieren"/>
+        </properties>
+      </component>
+      <component id="ff43f" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Tageszeitung"/>
+        </properties>
+      </component>
+      <component id="354da" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Sportzeitung"/>
+        </properties>
+      </component>
+      <component id="bb734" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Wissenschaftszeitung"/>
+        </properties>
+      </component>
+      <component id="9aa2" class="javax.swing.JButton" binding="artikelAnzeigenButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Artikel anzeigen"/>
+        </properties>
+      </component>
+      <component id="e7b67" class="javax.swing.JButton" binding="artikelAnzeigenButton1" default-binding="true">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Artikel anzeigen"/>
+        </properties>
+      </component>
+      <component id="70b35" class="javax.swing.JButton" binding="artikelAnzeigenButton2" default-binding="true">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Artikel anzeigen"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
