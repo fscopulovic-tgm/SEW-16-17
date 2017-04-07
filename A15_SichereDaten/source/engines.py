@@ -5,7 +5,7 @@ import zipfile
 from source.engine import ArchiveEngine
 
 
-class ZipWithoutCompression(ArchiveEngine):
+class ZipStored(ArchiveEngine):
 
     def write(self):
         """
@@ -31,7 +31,7 @@ class ZipWithoutCompression(ArchiveEngine):
         return ">>Zipfile without compression\n>>Creates a .zip-file with the taken components"
 
 
-class ZipWithLZMACompression(ArchiveEngine):
+class ZipLZMA(ArchiveEngine):
 
     def write(self):
         """
@@ -57,7 +57,7 @@ class ZipWithLZMACompression(ArchiveEngine):
         return ">>Zipfile with LZMA-compression\n>>Creates a .7z-file with the taken components"
 
 
-class ZipWithBZIP2Compression(ArchiveEngine):
+class ZipBZIP2(ArchiveEngine):
 
     def write(self):
         """
@@ -83,7 +83,7 @@ class ZipWithBZIP2Compression(ArchiveEngine):
         return ">>Zipfile with BZIP2-compression\n>>Creates a .bz2-file with the taken components"
 
 
-class ZipWithDeflatedCompression(ArchiveEngine):
+class ZipDeflated(ArchiveEngine):
 
     def write(self):
         """
@@ -109,7 +109,7 @@ class ZipWithDeflatedCompression(ArchiveEngine):
         return ">>Zipfile with ZIP_DEFLATED-compression\n>>Creates a .zip-file with the taken components"
 
 
-class TarWithGZIPCompression(ArchiveEngine):
+class TarGZIP(ArchiveEngine):
 
     def write(self):
         """
@@ -135,7 +135,7 @@ class TarWithGZIPCompression(ArchiveEngine):
         return ">>Tarfile with GZIP-compression\n>>Creates a .tar.gz-file with the taken components"
 
 
-class TarWithoutCompression(ArchiveEngine):
+class TarStored(ArchiveEngine):
 
     def write(self):
         """
@@ -161,7 +161,7 @@ class TarWithoutCompression(ArchiveEngine):
         return ">>Tarfile without compression\n>>Creates a .tar-file with the taken components"
 
 
-class TarWithLZMACompression(ArchiveEngine):
+class TarLZMA(ArchiveEngine):
 
     def write(self):
         """
@@ -187,7 +187,7 @@ class TarWithLZMACompression(ArchiveEngine):
         return ">>Tarfile with LZMA-compression\n>>Creates a .tar.xz-file with the taken components"
 
 
-class TarWithBZIP2Compression(ArchiveEngine):
+class TarBZIP2(ArchiveEngine):
 
     def write(self):
         """
