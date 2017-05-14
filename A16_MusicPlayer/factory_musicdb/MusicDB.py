@@ -31,13 +31,17 @@ class MusicDB(MusikdatenbankFabrik):
         """
         for dirname, foldername, files in os.walk(self.playlist_dir):
             for file in files:
-                file_path = dirname + os.path.sep + file
-                music_file = pyglet.media.load(file_path)
-                info = MP3(file_path)
+                extension = os.path.splitext(file)[1][1:]
+                if extension.lower() in ["mp3", "wma", "wav", "ra", "ram", "rm", "mid", "flac", "ogg"]:
+                    file_path = dirname + os.path.sep + file
+                    music_file = pyglet.media.load(file_path)
+                    info = MP3(file_path)
 
-                s_length = info.info.length
-                s_title = info["TIT2"]
-                s_interpret = info["TPE1"]
-                s_album = info["TALB"]
+                    s_length = info.info.length
+                    s_title = info["TIT2"]
+                    s_interpret = info["TPE1"]
+                    s_album = info["TALB"]
 
-                self.playlist.append(MusicFile(music_file, s_length, s_title, s_interpret, s_album))
+                    self.playlist.append(MusicFile(music_file, s_length, s_title, s_interpret, s_album))
+                else:
+                    print("%s is not a music file" % file)
