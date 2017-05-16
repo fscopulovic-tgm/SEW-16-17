@@ -78,7 +78,7 @@ public class PrimeSearcherServlet extends HttpServlet
 		{
 			this.psw = new PrimeSearcherWorker();
 			this.psw.start();
-			this.foundOn = "Servlet just started";
+			this.foundOn = "So far not found";
 		}
 	}
 	
