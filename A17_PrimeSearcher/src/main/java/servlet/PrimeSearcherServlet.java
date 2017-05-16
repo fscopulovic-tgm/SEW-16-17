@@ -21,7 +21,7 @@ public class PrimeSearcherServlet extends HttpServlet
 	
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private Date startDate = new Date();
-	private Date foundOn;
+	private String foundOn;
 	private long primenumber;
 	
 	private PrimeSearcherWorker psw;
@@ -35,18 +35,11 @@ public class PrimeSearcherServlet extends HttpServlet
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		this.checkWorkerThread();
-		PrintWriter out = resp.getWriter();
-		long check = this.psw.getPrimenumber();
+		this.workerThreadInit();
+		this.newPrimeNumberFound();
 		
-		// This if statement is only here for checking if there is a new prime number
-		// If not, it sets the new prime number and a time stamp when its found
-		if (!(this.primenumber == check))
-		{
-			this.primenumber = check;
-			this.foundOn = new Date();
-		}
-
+		PrintWriter out = resp.getWriter();	
+		
 		String output = "<html>"
 				+ "<head>"
 				+ "<title>PrimeSearcher</title>"
@@ -64,7 +57,7 @@ public class PrimeSearcherServlet extends HttpServlet
 				+ "</div>"
 				+ "<div>"
 				+ "<h2>Found at:</h2>" 
-				+ "<p>" + dateFormat.format(this.foundOn) + "</p>"
+				+ "<p>" + this.foundOn + "</p>"
 				+ "</div>"
 				+ "<div>"
 				+ "<h2>Running time:</h2>" 
@@ -79,13 +72,31 @@ public class PrimeSearcherServlet extends HttpServlet
 	 * Looks if the worker thread is on
 	 * The thread needs only one start, that is why the boolean will be set to true after the thread started
 	 */
-	private void checkWorkerThread()
+	private void workerThreadInit()
 	{
 		if (this.psw == null) 
 		{
 			this.psw = new PrimeSearcherWorker();
 			this.psw.start();
+			this.foundOn = "Servlet just started";
 		}
+	}
+	
+	/**
+	 * Checks if a new prime number is found
+	 * If yes, then it sets it to the new value and it also sets the finding date of the prime number
+	 * Else it does nothing
+	 */
+	private void newPrimeNumberFound()
+	{
+		long check = this.psw.getPrimenumber();
+		
+		if (!(this.primenumber == check))
+		{
+			this.primenumber = check;
+			this.foundOn = dateFormat.format(new Date());
+		}
+
 	}
 	
 	/**
