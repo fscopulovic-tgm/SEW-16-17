@@ -1,15 +1,16 @@
 package servlet;
 
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+
 
 public class PrimeSearcherWorker extends Thread 
 {
 	
-	private AtomicInteger numbers;
-	private CopyOnWriteArrayList<Integer> primenumbers;
+	private AtomicLong numbers;
+	private AtomicLong primenumber;
 	private long startTime;
+	private volatile boolean running;
 	
 	/**
 	 * Constructor of the PrimeSearcherWorker
@@ -21,8 +22,9 @@ public class PrimeSearcherWorker extends Thread
 	public PrimeSearcherWorker()
 	{
 		super();
-		this.numbers.set(1000000);
-		this.primenumbers = new CopyOnWriteArrayList<>();
+		this.running = true;
+		this.numbers = new AtomicLong(1000000000000001L);
+		this.primenumber = new AtomicLong(0);
 	}
 	
 	/**
@@ -32,13 +34,13 @@ public class PrimeSearcherWorker extends Thread
 	@Override
 	public void run()
 	{
-		
 		this.startTime = System.currentTimeMillis();
-		while (true)
+		while (running)
 		{
 			if (this.isPrime(this.numbers.get()))
 			{
-				this.primenumbers.add(this.numbers.get());
+				this.primenumber = new AtomicLong(this.numbers.get());
+				this.numbers.incrementAndGet();
 			} else {
 				this.numbers.incrementAndGet();
 			}
@@ -56,15 +58,15 @@ public class PrimeSearcherWorker extends Thread
 	 * 
 	 * @param n The int value that will be checked
 	 * @return Returns a true if the number is a prime number and a false if not
-	 */
-	boolean isPrime(int n) 
+	 **/
+	private boolean isPrime(long n) 
 	{
 	    //check if n is a multiple of 2
 	    if ((n % 2) == 0) return false;
 	    //if not, then just check the odds
-	    for(int i = 3; (i * i) <= n; i += 2) 
+	    for (long i = 3; (i * i) <= n; i += 2) 
 	    {
-	        if((n % i) == 0)
+	        if ((n % i) == 0)
 	            return false;
 	    }
 	    return true;
@@ -73,9 +75,9 @@ public class PrimeSearcherWorker extends Thread
 	/**
 	 * @return Last Integer from the CopyOnWriteArrayList
 	 */
-	public Integer getLastPrimenumber() 
+	public long getPrimenumber() 
 	{
-		return this.primenumbers.get(this.primenumbers.size());
+		return this.primenumber.get();
 	}
 	
 	/**
@@ -83,7 +85,7 @@ public class PrimeSearcherWorker extends Thread
 	 */
 	private long getRunningTime()
 	{
-		return this.startTime - System.currentTimeMillis();
+		return System.currentTimeMillis() - this.startTime;
 	}
 	
 	/**
@@ -112,5 +114,20 @@ public class PrimeSearcherWorker extends Thread
 		}
 		
 		return formatedTime;
+	}
+	
+	/**
+	 * Sets the attribute running to false
+	 * Calls the join method of this thread so it ends safe
+	 */
+	public void shutdown() 
+	{
+		this.running = false;
+		try {
+			this.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
