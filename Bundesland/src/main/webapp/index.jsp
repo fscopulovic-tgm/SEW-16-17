@@ -9,9 +9,7 @@
 	</head>
 	<body>
 	<h1>Wähle ein Thema aus!</h1>
-	<br>
 	<label> Lerne dein Land kennen! </label>
-	<br>
 		<form action="Select.do" id="wish">
 			<label> Themen:
 				<select name="wishSelected" id="wishSelected" size="3">

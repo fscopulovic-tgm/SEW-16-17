@@ -53,32 +53,33 @@ public class MyServlet extends HttpServlet
 		String wishState = request.getParameter("wishState");
 		RequestDispatcher disp;
 		
-		switch (wish)
+		if (wish != null) 
 		{
-		case "allCaptials":
-			String[] outputCapital = this.getCaptialsArray();
-			request.setAttribute("typeOfOutput", "all capitals");
-			request.setAttribute("capitals", outputCapital);
-			disp = request.getRequestDispatcher("/output.jsp");
-			disp.forward(request, response);
-			break;
-		case "federalStates":
-			System.out.println(wish);
-			String[] outputFederalState = this.getFederalStatesArray();
-			request.setAttribute("typeOfOutput", "all federal states");
-			request.setAttribute("output", outputFederalState);
-			disp = request.getRequestDispatcher("/output.jsp");
-			disp.forward(request, response);
-			break;
-		case "oneCapital":
-			System.out.println(wish);
-			String[] outputFederalState1 = this.getFederalStatesArray();
-			request.setAttribute("output", outputFederalState1);
-			disp = request.getRequestDispatcher("/index2.jsp");
-			disp.forward(request, response);
-			break;
-		default:
-			break;
+			switch (wish)
+			{
+			case "allCaptials":
+				request.setAttribute("typeOfOutput", "all capitals");
+				request.setAttribute("output", this.getCaptialsArray());
+				disp = request.getRequestDispatcher("/output.jsp");
+				disp.forward(request, response);
+				break;
+			case "federalStates":
+				System.out.println(wish);
+				request.setAttribute("typeOfOutput", "all federal states");
+				request.setAttribute("output", this.getFederalStatesArray());
+				disp = request.getRequestDispatcher("/output.jsp");
+				disp.forward(request, response);
+				break;
+			case "oneCapital":
+				System.out.println(wish);
+				String[] outputFederalState1 = this.getFederalStatesArray();
+				request.setAttribute("output", outputFederalState1);
+				disp = request.getRequestDispatcher("/index2.jsp");
+				disp.forward(request, response);
+				break;
+			default:
+				break;
+			}
 		}
 		
 		if (wishState != null)
@@ -86,7 +87,7 @@ public class MyServlet extends HttpServlet
 			request.setAttribute("typeOfOutput", "capital");
 			for (Bundesland item : this.bl) 
 			{
-				if(item.equals(wishState))
+				if(item.getBundesland().equals(wishState))
 				{
 					String[] output = {"Die Haupstadt von "+ wishState + " ist " + item.getHauptstadt()};
 					request.setAttribute("output", output);

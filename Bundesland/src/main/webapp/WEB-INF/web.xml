@@ -5,7 +5,6 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   <display-name>MyServlet</display-name>
   <welcome-file-list>
 	<welcome-file>/index.jsp</welcome-file>
-	<welcome-file>/output.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
     <servlet-name>MyServlet</servlet-name>

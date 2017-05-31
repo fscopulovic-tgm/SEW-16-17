@@ -9,19 +9,17 @@
 	</head>
 	<body>
 	<h1>Wähle ein Bundesland aus!</h1> 
-	<br>
 	<label> Lerne dein Land kennen! </label> 
-	<br>
-		<form action="Select.do" id="wish">
-			<label> Bundesland:
-				<select name="wishState" id="wishSelected" size="3">
-					<c:forEach items="${ouput}" var="item">
-						<option value="${item}"><c:out value="${item}" /> </option>
-					</c:forEach>
-				</select>
-			</label>
-			<br>
-			<button type="submit">Submit!</button>
-		</form>
+	<form action="Select.do" id="wish">
+		<label> Bundesland:
+			<select name="wishState" id="wishSelected" size="3">
+				<c:forEach items="${output}" var="item">
+					<option value="${item}"><c:out value="${item}" /> </option>
+				</c:forEach>
+			</select>
+		</label>
+		<br>
+		<button type="submit">Submit!</button>
+	</form>
 	</body>
 </html>
